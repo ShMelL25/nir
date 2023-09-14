@@ -4,21 +4,22 @@ from typing import Optional
 from golem.core.utilities.random import RandomStateHandler
 from golem.utilities.requirements_notificator import warn_requirement
 
-from xgboost import XGBClassifier, XGBRegressor
-
 try:
     import cudf
     import cuml
+    from sklearn.naive_bayes import BernoulliNB
     from cuml import Ridge, LogisticRegression, Lasso, ElasticNet, \
         MBSGDClassifier, MBSGDRegressor, CD
     from cuml.ensemble import RandomForestClassifier, RandomForestRegressor
-    from cuml.svm import SVC
+    from cuml.svm import SVC, SVR
     from cuml.neighbors import KNeighborsClassifier as CuMlknnClassifier, \
         KNeighborsRegressor as CuMlknnRegressor
     from cuml import LinearRegression as CuMlLinReg, SGD as CuMlSGD, \
         MultinomialNB as CuMlMultinomialNB
-    from cuml.naive_bayes import BernoulliNB
-    from cuml.dask.naive_bayes import MultinomialNB
+    from cuml import QN
+    from cuml import KMeans
+    from xgboost import XGBClassifier, XGBRegressor
+    
 except ModuleNotFoundError:
     warn_requirement('cudf / cuml', 'cudf / cuml')
     cudf = None
@@ -55,9 +56,12 @@ class CuMLEvaluationStrategy(SkLearnEvaluationStrategy):
             'mbsgdclass': MBSGDClassifier,
             'mbsgdcregr': MBSGDRegressor,
             'cd': CD,
+            'qn': QN,
+            'svr': SVR,
+            'xgbreg_gpu': XGBRegressor,
+            'xgboostgpu': XGBClassifier,
             'bernb': BernoulliNB,
-            'multinb':MultinomialNB,
-            'xgboostgpu':XGBClassifier
+            'kmeans':KMeans
         }
     except NameError:
         # if cuML not installed

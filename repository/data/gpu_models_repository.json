@@ -144,8 +144,23 @@
     },
     "xgboostgpu": {
       "meta": "rapids_gpu_class",
+      "presets": ["gpu"],
+      "tags": [
+        "boosting", "tree", "non_multi", "non-default", "non_linear"
+      ]
+    },
+    "xgbreg_gpu": {
+      "meta": "rapids_gpu_regr",
+      "presets": ["gpu"],
+      "tags": [
+        "boosting", "tree", "non_multi", "non-default", "non_linear"
+      ]
+    },
+    "svr": {
+      "meta": "rapids_gpu_regr",
       "presets": ["gpu"]
       
     }
+
   }
 }

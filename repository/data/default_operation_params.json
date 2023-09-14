@@ -1,9 +1,9 @@
 {
   "rf": {
-    "n_jobs": 1
+    
   },
   "rfr": {
-    "n_jobs": 1
+    
   },
   "xgboost": {
     "eval_metric": "mlogloss",
@@ -141,5 +141,12 @@
   },
   "fast_ica": {
     "whiten": "unit-variance"
+  },
+  "xgboostgpu": {
+    "eval_metric": "mlogloss",
+    "tree_method": "gpu_hist"
+  },
+  "xgbreg_gpu": {
+    "tree_method": "gpu_hist"
   }
 }
